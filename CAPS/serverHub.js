@@ -21,7 +21,15 @@ io.on('connection', (socket) => {
         io.emit("action", payload);
     });
 
-
+    socket.on('pickup', (payload) => {
+        let obj = {
+            event: 'pickup',
+            time: new Date().toLocaleTimeString(),
+            payload
+        }
+        console.log('EVENT ', obj);
+        caps.emit('pickup', payload);
+    });
 
 });
 
@@ -71,7 +79,7 @@ function capsNameSpace(io) {
 
 
 
-        
+
 
         socket.on('delivered', (payload) => {
             let obj = {
@@ -89,7 +97,7 @@ function capsNameSpace(io) {
 
 
 
-
+module.exports = io;
 
 
 
